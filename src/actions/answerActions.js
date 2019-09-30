@@ -1,5 +1,5 @@
-import {_saveQuestionAnswer} from '../utils/_DATA.js';
-import {createActionCreator} from '../utils/utils';
+import { _saveQuestionAnswer } from '../utils/_DATA.js';
+import { createActionCreator } from '../utils/utils';
 
 export const answerActionTypes = {
 	SAVE_ANSWER_INITIATED: 'SAVE_ANSWER_INITIATED',
@@ -13,12 +13,12 @@ const saveAnswerFailed = createActionCreator(answerActionTypes.FETCH_QUESTIONS_F
 
 export const saveAnswer = (authedUser, qid, answer) => {
 	return (dispatch) => {
-      	const requestPayload = {authedUser, qid, answer};
-      	dispatch(saveAnswerInitiated(requestPayload));
-    	_saveQuestionAnswer(requestPayload).then(() => {
-        	dispatch(saveAnswerSuccess());
-        }).catch(error => {
-        	dispatch(saveAnswerFailed(error));
-        });
-    };
+		const requestPayload = { authedUser, qid, answer };
+		dispatch(saveAnswerInitiated(requestPayload));
+		_saveQuestionAnswer(requestPayload).then(() => {
+			dispatch(saveAnswerSuccess());
+		}).catch(error => {
+			dispatch(saveAnswerFailed(error));
+		});
+	};
 }

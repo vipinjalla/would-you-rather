@@ -1,5 +1,5 @@
-import {_getUsers} from '../utils/_DATA.js';
-import {createActionCreator} from '../utils/utils';
+import { _getUsers } from '../utils/_DATA.js';
+import { createActionCreator } from '../utils/utils';
 
 export const userActionTypes = {
 	FETCH_USERS_INITIATED: 'FETCH_USERS_INITIATED',
@@ -17,11 +17,11 @@ export const logout = createActionCreator(userActionTypes.LOGOUT);
 
 export const getUsers = () => {
 	return (dispatch) => {
-      	dispatch(fetchUsersInitiated());
-    	_getUsers().then((users) => {
-        	dispatch(fetchUsersSuccess(users));
-        }).catch(error => {
-        	dispatch(fetchUsersFailed(error));
-        });
-    };
+		dispatch(fetchUsersInitiated());
+		_getUsers().then((users) => {
+			dispatch(fetchUsersSuccess(users));
+		}).catch(error => {
+			dispatch(fetchUsersFailed(error));
+		});
+	};
 }
