@@ -1,0 +1,220 @@
+h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+}
+
+.app-header {
+    border-bottom: 1px solid gray;
+}
+
+.header-right-part {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.app-container {
+    margin-top: 65px;
+    width: 600px;
+}
+
+.app-container .card {
+    margin: 10px;
+}
+
+.logged-in-user {
+    display: flex;
+    padding: 10px;
+}
+
+.logged-in-user-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;    
+    margin: 0 5px;
+}
+
+.card-login .card-body .login-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-login .card-body .login-form .logo {
+    width: 200px;
+    height: 200px;
+
+}
+.card .card-body .form-control {
+    margin-top: 15px;
+}
+
+.medium-card-img {
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
+}
+
+.card .leader-board-card-body {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 10px;
+}
+
+.card .leader-board-card-body .card-left-part {
+    border-right: 1px solid #DDDDDD;
+}
+
+.label-group > * {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.label-group .label:last-child {
+    border-bottom: none;
+}
+
+.label-group .label {
+    display: flex;
+    padding: 10px 0;
+}
+
+.label-group .label .key{
+
+}
+
+.label-group .label .value{
+    display: flex;
+    position: absolute;
+    right: 30px;
+}
+
+.amount-in-filled-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+}
+
+.or-border {
+    padding-top: 30px;
+    display: flex;
+}
+
+.or-border .or-border-item {
+    height: 1px;
+    background-color: gray;
+}
+
+.or-border .or-item {
+    margin-top: -20px;
+}
+
+.question-card .question-card-title {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.question-card .card-body, .poll-card .card-body  {
+    display: flex;
+    align-items: center;
+}
+
+.readonly .card-header{
+    height: 50px;
+    align-items: center;
+    display: flex;
+}
+
+.question-card .card-body .card-left-part {
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #DDDDDD;
+    height: 180px;
+    border-radius: 0;
+    padding: 0;
+}
+
+.question-card .card-body .card-img {
+    height: 120px;
+}
+
+.poll-card .card-body {
+    align-items: center;
+}
+
+.poll-card .card-body .card .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.poll-card .card-body .card .card-body .option {
+    margin-bottom: 10px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.options .option-text {
+    margin: 10px;
+}
+
+.options .checkbox-inline {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .card-header {
+    padding: 0;
+}    
+
+.dashboard .card-header .card-columns {
+    display: flex;
+}
+
+.dashboard .card-header .card-columns .card {
+    margin: 0;    
+    width: 50%;
+}
+
+.dashboard .card-body .card-body {
+    padding: 0;
+}
+
+.dashboard > .card-body {
+    padding: 0;
+}
+
+.card-columns .card-body {
+    cursor: pointer;
+}
+
+.progress {
+  width: 100%;
+  height: 30px;
+}
+
+.alert {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  position: absolute;
+  top: 68px;
+  left: 0;
+  right: 0;
+}
+
+.your-vote {
+	position: absolute;
+    right: -15px;
+    top: -6px;
+    border: 1px solid gray;
+    border-radius: 30px;
+    width: 55px;
+    text-align: center;
+    color: #fff;
+    background-color: #007bff;
+}
