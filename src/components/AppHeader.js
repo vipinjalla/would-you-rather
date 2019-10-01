@@ -36,13 +36,13 @@ export class AppHeader extends Component {
                     </li>
                     <li className="nav-item">
                         <NavLink
-                            className={'nav-link ' + (this.state.currentRoute === '/create-question' ? 'active' : '')}
-                            to="/create-question">New Question</NavLink>
+                            className={'nav-link ' + (this.state.currentRoute === '/add' ? 'active' : '')}
+                            to="/add">New Question</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink
-                            className={'nav-link ' + (this.state.currentRoute === '/leader-board' ? 'active' : '')}
-                            to="/leader-board">Leader Board</NavLink>
+                            className={'nav-link ' + (this.state.currentRoute === '/leaderboard' ? 'active' : '')}
+                            to="/leaderboard">Leader Board</NavLink>
                     </li>
                 </ul>
             </div>

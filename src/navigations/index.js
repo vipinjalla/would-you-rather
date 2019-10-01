@@ -11,6 +11,7 @@ const routesConfig = [
     {
         component: Dashboard,
         path: '/home',
+        exact: true
     }, {
         component: Login,
         path: '/',
@@ -20,13 +21,13 @@ const routesConfig = [
         path: '/answer'
     }, {
         component: QuestionPoll,
-        path: '/poll'
+        path: '/questions'
     }, {
         component: NewQuestion,
-        path: '/create-question'
+        path: '/add'
     }, {
         component: LeaderBoard,
-        path: '/leader-board'
+        path: '/leaderboard'
     }
 ]
 

@@ -22,11 +22,12 @@ export class Dashboard extends Component {
 
     onActionHandler(question) {
         const { view } = this.state;
-        this.props.dispatch(selectQuestion({ selectQuestion: question }));
         if (view === MODE.UNANSWERED) {
+	        this.props.dispatch(selectQuestion({ selectQuestion: question }));
             this.props.history.push('/answer');
+          
         } else if (view === MODE.ANSWERED) {
-            this.props.history.push('/poll');
+	        this.props.history.push('/questions/' + question.id);
         }
     }
 
@@ -59,7 +60,7 @@ export class Dashboard extends Component {
         const { view } = this.state;
         const { user } = this.props;
         const { users } = user;
-        let answer = '';
+        let answer = {};
         if (view === MODE.ANSWERED) {
             answer = getMyAnswer(user.loggedInUser, question);
         }
@@ -104,6 +105,7 @@ export class Dashboard extends Component {
     render() {
         if (!(this.props.user && this.props.user.loggedInUser)) {
             this.props.history.push('/');
+          	return null;
         }
 
         return (

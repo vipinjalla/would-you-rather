@@ -1,6 +1,4 @@
-import { userActionTypes } from '../../actions/userActions';
-import { answerActionTypes } from '../../actions/answerActions';
-import { questionsActionTypes } from '../../actions/questionsActions';
+import { userActionTypes, answerActionTypes, questionsActionTypes } from '../../actions/types';
 
 export default function userReducer(state, action) {
     const { type, payload } = action;

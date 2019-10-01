@@ -29,7 +29,7 @@ export default class Question extends Component {
             avatarURL: PropTypes.string,
             mode: PropTypes.string,
             question: PropTypes.object,
-            answer: PropTypes.string,
+            answer: PropTypes.object,
             onAction: PropTypes.func,
             emptyMessage: PropTypes.string
         };
@@ -82,15 +82,23 @@ export default class Question extends Component {
 
     renderActionButton() {
         const { mode } = this.props;
+		const {answer} = this.state;
+		let disabledAction = false;
+
         let label = 'Submit';
         if (mode === MODE.ANSWERED) {
             label = 'View Poll';
         } else if (mode === MODE.UNANSWERED) {
             label = 'Answer';
+        } else if (mode === MODE.ANSWERING && !answer) {
+            disabledAction= true;
         }
         return (
             <button className="form-control btn btn-primary"
-                onClick={() => this.props.onAction(this.state.answer)}>{label}</button>
+                onClick={() => this.props.onAction(answer)}
+				disabled={disabledAction}>
+				{label}
+			</button>
         );
     }
 

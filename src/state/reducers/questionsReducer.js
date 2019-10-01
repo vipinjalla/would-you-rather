@@ -1,6 +1,4 @@
-import { questionsActionTypes } from '../../actions/questionsActions';
-import { answerActionTypes } from '../../actions/answerActions';
-import { userActionTypes } from '../../actions/userActions';
+import { questionsActionTypes, userActionTypes, answerActionTypes } from '../../actions/types';
 
 export default function questionsReducer(state, action) {
     const { type, payload } = action;
@@ -34,7 +32,7 @@ export default function questionsReducer(state, action) {
                     }
             };
             nextState = {
-                ...state, ...{
+                ...state, questionsList: {
                     ...state.questionsList,
                     [formattedQuestion.id]: formattedQuestion
                 }
@@ -49,7 +47,7 @@ export default function questionsReducer(state, action) {
                         ...state.questionsList[payload.qid],
                         [payload.answer]: {
                             ...state.questionsList[payload.qid][payload.answer],
-                            votes: state.questionsList[payload.qid][payload.answer].votes.concat([payload.author])
+                            votes: state.questionsList[payload.qid][payload.answer].votes.concat([payload.authedUser])
                         }
                     }
                 }

@@ -1,15 +1,6 @@
 import { _getQuestions, _saveQuestion } from '../utils/_DATA.js';
 import { createActionCreator } from '../utils/utils';
-
-export const questionsActionTypes = {
-	FETCH_QUESTIONS_INITIATED: 'FETCH_QUESTIONS_INITIATED',
-	FETCH_QUESTIONS_SUCCESS: 'FETCH_QUESTIONS_SUCCESS',
-	FETCH_QUESTIONS_FAILED: 'FETCH_QUESTIONS_FAILED',
-	SELECT_QUESTION: 'SELECT_QUESTION',
-	SAVE_QUESTION_INITIATED: 'SAVE_QUESTION_INITIATED',
-	SAVE_QUESTION_SUCCESS: 'SAVE_QUESTION_SUCCESS',
-	SAVE_QUESTION_FAILED: 'SAVE_QUESTION_FAILED'
-};
+import {questionsActionTypes} from './types';
 
 const fetchQuestionsInitiated = createActionCreator(questionsActionTypes.FETCH_QUESTIONS_INITIATED);
 const fetchQuestionsSuccess = createActionCreator(questionsActionTypes.FETCH_QUESTIONS_SUCCESS);

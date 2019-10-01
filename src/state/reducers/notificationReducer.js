@@ -1,4 +1,4 @@
-import { questionsActionTypes } from '../../actions/questionsActions';
+import { questionsActionTypes } from '../../actions/types';
 
 export default function notificationReducer(state, action) {
 	const { type } = action;

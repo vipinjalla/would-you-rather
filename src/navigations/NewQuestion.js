@@ -17,10 +17,7 @@ export class NewQuestion extends Component {
 		const { optionOneText, optionTwoText } = this.state;
 		const { loggedInUser } = this.props.user;
 		this.props.dispatch(saveQuestion(optionOneText, optionTwoText, loggedInUser));
-		this.setState({
-			optionOneText: '',
-			optionTwoText: ''
-		});
+      	this.props.history.push('/home');
 	}
 
 	renderHeader() {
@@ -34,6 +31,7 @@ export class NewQuestion extends Component {
 	}
 
 	renderContent() {
+      	const isValidQuestion = this.state.optionOneText.trim() !== '' && this.state.optionTwoText.trim() !== '';
 		return (
 			<CardBody className="question-card">
 				<div className="question-form">
@@ -54,7 +52,11 @@ export class NewQuestion extends Component {
 						value={this.state.optionTwoText}
 						onChange={(e) => this.setState({ optionTwoText: e.target.value })}
 					/>
-					<button className="form-control btn btn-primary" onClick={() => this.submitQuestion()}>Submit</button>
+					<button className="form-control btn btn-primary" 
+						disabled={!isValidQuestion} 
+						onClick={() => this.submitQuestion()}>
+						Submit
+					</button>
 				</div>
 			</CardBody>
 		);
@@ -63,6 +65,7 @@ export class NewQuestion extends Component {
 	render() {
 		if (!(this.props.user && this.props.user.loggedInUser)) {
 			this.props.history.push('/');
+          	return null;
 		}
 
 		return (

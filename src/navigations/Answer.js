@@ -8,7 +8,7 @@ export class Answer extends Component {
 
     handleSaveAnswer(question, answer) {
         this.props.dispatch(saveAnswer(this.props.user.loggedInUser, question.id, answer));
-        this.props.history.push('/poll');
+        this.props.history.push('/questions/' + question.id);
     }
 
     render() {
