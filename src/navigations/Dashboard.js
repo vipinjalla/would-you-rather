@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Card, CardHeader } from '../components/card';
 import Question, { MODE } from '../components/Question';
-import { getQuestions, selectQuestion } from '../actions/questionsActions';
+import { getQuestions } from '../actions/questionsActions';
 import { getMyAnswer, getUnansweredQuestions, getAnsweredQuestions } from '../utils/utils';
 
 export class Dashboard extends Component {
@@ -22,12 +23,8 @@ export class Dashboard extends Component {
 
     onActionHandler(question) {
         const { view } = this.state;
-        if (view === MODE.UNANSWERED) {
-	        this.props.dispatch(selectQuestion({ selectQuestion: question }));
-            this.props.history.push('/answer');
-          
-        } else if (view === MODE.ANSWERED) {
-	        this.props.history.push('/questions/' + question.id);
+        if (view === MODE.ANSWERED || view === MODE.UNANSWERED) {
+            this.props.history.push(`/questions/${question.id}`);
         }
     }
 
@@ -83,20 +80,20 @@ export class Dashboard extends Component {
             return null;
         }
 
-        const { user, questions } = this.props;
+        const { user } = this.props;
         let questionsList = [];
 
         if (view === MODE.UNANSWERED) {
-            questionsList = getUnansweredQuestions(user.loggedInUser, questions.questionsList);
+            questionsList = getUnansweredQuestions(user.loggedInUser, this.props.questionsList);
         } else {
-            questionsList = getAnsweredQuestions(user.loggedInUser, questions.questionsList);
+            questionsList = getAnsweredQuestions(user.loggedInUser, this.props.questionsList);
         }
 
         if (questionsList.length === 0) {
-            if (this.props.questions.isLoading) {
+            if (this.props.isLoading) {
                 return (<Question mode={MODE.NO_RESULT} emptyMessage="Loading..." />);
             }
-            return (<Question mode={MODE.NO_RESULT} />);
+            return (<Question mode={MODE.NO_RESULT} emptyMessage="No more questions." />);
         }
 
         return questionsList.map((question, index) => this.renderDashboardQuestion(question, index));
@@ -104,8 +101,7 @@ export class Dashboard extends Component {
 
     render() {
         if (!(this.props.user && this.props.user.loggedInUser)) {
-            this.props.history.push('/');
-          	return null;
+            return (<Redirect to="/" />);
         }
 
         return (
@@ -118,8 +114,10 @@ export class Dashboard extends Component {
 }
 
 export default connect(state => {
+    const { questionsList = {}, isLoading } = state.questions;
     return {
         user: state.user,
-        questions: state.questions
+        questionsList: Object.values(questionsList).sort((q1, q2) => q2.timestamp - q1.timestamp),
+        isLoading
     };
 })(Dashboard);

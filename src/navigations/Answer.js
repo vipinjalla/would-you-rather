@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router-dom';
+import ErrorPage from '../components/ErrorPage';
 import { saveAnswer } from '../actions/answerActions';
 import Question, { MODE } from '../components/Question';
 
@@ -11,14 +13,26 @@ export class Answer extends Component {
         this.props.history.push('/questions/' + question.id);
     }
 
+    renderErrorPage() {
+        return (
+            <ErrorPage
+                title="Error 404 !!!"
+                description="Question not found"
+            />
+        );
+    }
+
     render() {
         if (!(this.props.user && this.props.user.loggedInUser)) {
-            this.props.history.push('/');
+            return (<Redirect to="/" />);
+        }
+
+        const { question } = this.props;
+        if (!question) {
+            return this.renderErrorPage();
         }
 
         const { users } = this.props.user;
-        const { currentAnsweringQuestion: question } = this.props.questions;
-
         return (
             <Question
                 author={users[question.author].name}
@@ -31,9 +45,4 @@ export class Answer extends Component {
     }
 }
 
-export default connect(state => {
-    return {
-        user: state.user,
-        questions: state.questions
-    };
-})(Answer);
+export default withRouter(connect()(Answer));

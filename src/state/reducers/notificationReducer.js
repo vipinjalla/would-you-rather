@@ -1,6 +1,6 @@
 import { questionsActionTypes } from '../../actions/types';
 
-export default function notificationReducer(state, action) {
+export default function notificationReducer(state = {}, action) {
 	const { type } = action;
 	let nextState;
 	switch (type) {
@@ -14,7 +14,7 @@ export default function notificationReducer(state, action) {
 			nextState = { ...state, toastErrorMessage: 'Unable to add question. Please try again.' };
 			break;
 		default:
-			return { ...state };
+			return state;
 	}
 
 	return nextState;

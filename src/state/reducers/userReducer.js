@@ -1,6 +1,6 @@
 import { userActionTypes, answerActionTypes, questionsActionTypes } from '../../actions/types';
 
-export default function userReducer(state, action) {
+export default function userReducer(state = {}, action) {
     const { type, payload } = action;
     let formattedQuestion;
     let nextState;
@@ -54,7 +54,7 @@ export default function userReducer(state, action) {
             };
             break;
         default:
-            return { ...state };
+            return state;
     }
 
     return nextState;

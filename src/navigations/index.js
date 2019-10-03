@@ -18,10 +18,10 @@ const routesConfig = [
         exact: true
     }, {
         component: Answer,
-        path: '/answer'
+        path: '/answer/:id'
     }, {
         component: QuestionPoll,
-        path: '/questions'
+        path: '/questions/:id'
     }, {
         component: NewQuestion,
         path: '/add'

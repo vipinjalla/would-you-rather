@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import { logout } from '../actions/userActions';
 
@@ -73,7 +73,9 @@ export class AppHeader extends Component {
                     {this.renderLoggedInUser()}
                     <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/" onClick={() => window.location = '/'}>Login</NavLink>
+                            <NavLink className="nav-link" to="/" onClick={() => this.props.history.push('/')}>
+                                Login
+                            </NavLink>
                         </li>
                     </ul>
                 </div>
@@ -102,8 +104,8 @@ export class AppHeader extends Component {
     }
 }
 
-export default connect((state) => {
+export default withRouter(connect((state) => {
     return {
         user: state.user
     }
-})(AppHeader);
+})(AppHeader));

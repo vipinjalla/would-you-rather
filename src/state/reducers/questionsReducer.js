@@ -1,6 +1,6 @@
 import { questionsActionTypes, userActionTypes, answerActionTypes } from '../../actions/types';
 
-export default function questionsReducer(state, action) {
+export default function questionsReducer(state = {}, action) {
     const { type, payload } = action;
     let formattedQuestion;
     let nextState;
@@ -14,22 +14,19 @@ export default function questionsReducer(state, action) {
         case questionsActionTypes.FETCH_QUESTIONS_SUCCESS:
             nextState = { ...state, questionsList: { ...payload }, isLoading: false, toastSuccessMessage: true };
             break;
-        case questionsActionTypes.SELECT_QUESTION:
-            nextState = { ...state, currentAnsweringQuestion: payload.selectQuestion };
-            break;
         case questionsActionTypes.SAVE_QUESTION_INITIATED:
-              formattedQuestion = {
-                    id: 'newQuestionTempID',
-                    timestamp: Date.now(),
-                    author: payload.author,
-                    optionOne: {
-                        votes: [],
-                        text: payload.optionOneText,
-                    },
-                    optionTwo: {
-                        votes: [],
-                        text: payload.optionTwoText,
-                    }
+            formattedQuestion = {
+                id: 'newQuestionTempID',
+                timestamp: Date.now(),
+                author: payload.author,
+                optionOne: {
+                    votes: [],
+                    text: payload.optionOneText,
+                },
+                optionTwo: {
+                    votes: [],
+                    text: payload.optionTwoText,
+                }
             };
             nextState = {
                 ...state, questionsList: {
@@ -57,7 +54,7 @@ export default function questionsReducer(state, action) {
             nextState = {}
             break;
         default:
-            return { ...state };
+            return state;
     }
 
     return nextState;

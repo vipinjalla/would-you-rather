@@ -82,8 +82,8 @@ export default class Question extends Component {
 
     renderActionButton() {
         const { mode } = this.props;
-		const {answer} = this.state;
-		let disabledAction = false;
+        const { answer } = this.state;
+        let disabledAction = false;
 
         let label = 'Submit';
         if (mode === MODE.ANSWERED) {
@@ -91,14 +91,14 @@ export default class Question extends Component {
         } else if (mode === MODE.UNANSWERED) {
             label = 'Answer';
         } else if (mode === MODE.ANSWERING && !answer) {
-            disabledAction= true;
+            disabledAction = true;
         }
         return (
             <button className="form-control btn btn-primary"
                 onClick={() => this.props.onAction(answer)}
-				disabled={disabledAction}>
-				{label}
-			</button>
+                disabled={disabledAction}>
+                {label}
+            </button>
         );
     }
 

@@ -1,6 +1,6 @@
 import { _getUsers } from '../utils/_DATA.js';
 import { createActionCreator } from '../utils/utils';
-import {userActionTypes} from './types';
+import { userActionTypes } from './types';
 
 const fetchUsersInitiated = createActionCreator(userActionTypes.FETCH_USERS_INITIATED);
 const fetchUsersSuccess = createActionCreator(userActionTypes.FETCH_USERS_SUCCESS);

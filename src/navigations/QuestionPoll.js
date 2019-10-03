@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { OPTIONS } from '../components/Question';
 import ErrorPage from '../components/ErrorPage';
-
+import Answer from './Answer';
 import { Card, CardHeader, CardBody } from '../components/card';
 import Poll from '../components/Poll';
 import { getMyAnswer } from '../utils/utils';
@@ -12,35 +13,31 @@ export class QuestionPoll extends Component {
 	renderYourVoteTag() {
 		return (<div className="your-vote">Your Vote</div>);
 	}
-  
-  	renderErrorPage() {
-    	return (
-        	<ErrorPage 
-        		title="Error 404 !!!"
-        		description="Question not found"
-        	/>
-        );
-    }
+
+	renderErrorPage() {
+		return (
+			<ErrorPage
+				title="Error 404 !!!"
+				description="Question not found"
+			/>
+		);
+	}
 
 	render() {
+		const { question } = this.props;
+		if (!question) {
+			return this.renderErrorPage();
+		}
+
 		if (!(this.props.user && this.props.user.loggedInUser)) {
-			this.props.history.push('/');
-          	return null;
+			return (<Redirect to="/" />);
+		}
+
+		const { users, loggedInUser } = this.props.user;
+		if (!(question.optionOne.votes.includes(loggedInUser) || question.optionTwo.votes.includes(loggedInUser))) {
+			return (<Answer user={this.props.user} question={question} />);
 		}
       
-      	const {questionsList} = this.props.questions;
-      	const pathnames = this.props.location.pathname.split("/");
-		if (pathnames.length !== 3) {
-  			return this.renderErrorPage();
-        }
-      	const questionId = pathnames[2];
-      	const question = questionsList[questionId];
-      
-		if (!question) {
-  			return this.renderErrorPage();
-        }
-      
-		const { users, loggedInUser } = this.props.user;
 		const optionOneVotes = question.optionOne.votes.length;
 		const optionTwoVotes = question.optionTwo.votes.length;
 		const totalVotes = optionOneVotes + optionTwoVotes;
@@ -77,9 +74,10 @@ export class QuestionPoll extends Component {
 	}
 }
 
-export default connect(state => {
+export default connect((state, props) => {
+	const questionId = props.match.params.id;
 	return {
 		user: state.user,
-		questions: state.questions
+		question: state.questions.questionsList && state.questions.questionsList[questionId]
 	};
 })(QuestionPoll);

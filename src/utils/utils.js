@@ -19,14 +19,14 @@ export const getMyQuestions = (author, questionsList = []) => {
 	});
 };
 
-export const getAnsweredQuestions = (author, questionsList = {}) => {
-	return Object.values(questionsList).filter(question => {
+export const getAnsweredQuestions = (author, questionsList = []) => {
+	return questionsList.filter(question => {
 		return question && (question.optionOne.votes.includes(author) || question.optionTwo.votes.includes(author));
 	});
 };
 
-export const getUnansweredQuestions = (author, questionsList = {}) => {
-	return Object.values(questionsList).filter(question => {
+export const getUnansweredQuestions = (author, questionsList = []) => {
+	return questionsList.filter(question => {
 		return question && (!question.optionOne.votes.includes(author) && !question.optionTwo.votes.includes(author));
 	});
 };

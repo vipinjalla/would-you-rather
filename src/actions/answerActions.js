@@ -1,6 +1,6 @@
 import { _saveQuestionAnswer } from '../utils/_DATA.js';
 import { createActionCreator } from '../utils/utils';
-import {answerActionTypes} from './types';
+import { answerActionTypes } from './types';
 
 const saveAnswerInitiated = createActionCreator(answerActionTypes.SAVE_ANSWER_INITIATED);
 const saveAnswerSuccess = createActionCreator(answerActionTypes.SAVE_ANSWER_SUCCESS);

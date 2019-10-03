@@ -29,8 +29,13 @@ export default class Poll extends Component {
 			<div className="progress">
 				<div className="progress-bar bg-success" role="progressbar" aria-valuenow="40"
 					aria-valuemin={minValue} aria-valuemax={maxValue} style={{ width: (progressInPercentage + '%') }}>
-					{progressInPercentage > 0 && progressInPercentage + '% votes...!!!'}
+					{progressInPercentage > 0 && `${progressInPercentage} % votes...!!! (${score} ${score === 1 ? 'vote' : 'votes'})`}
 				</div>
+				{progressInPercentage === 0 &&
+					(
+						<div className="no-votes">{`${progressInPercentage} % votes...!!! (${score} ${score === 1 ? 'vote' : 'votes'})`}</div>
+					)
+				}
 			</div>
 		);
 	}

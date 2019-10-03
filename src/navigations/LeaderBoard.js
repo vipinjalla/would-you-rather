@@ -13,10 +13,9 @@ export class LeaderBoard extends Component {
     }
 
     getUsersSortedByScore() {
-        const { user = {}, questions = {} } = this.props;
-        const { users = {} } = user;
-        const { questionsList = {} } = questions;
-        return Object.values(users).map(user => {
+        const { questionsList = [] } = this.props;
+        const { users = [] } = this.props;
+        return users.map(user => {
             const numberOfAnsweredQuestions = getAnsweredQuestions(user.id, questionsList).length;
             const numberOfCreatedQuestions = user.questions.length;
             const score = numberOfAnsweredQuestions + numberOfCreatedQuestions;
@@ -55,8 +54,10 @@ export class LeaderBoard extends Component {
 }
 
 export default connect(state => {
+    const { questionsList = {} } = state.questions;
+    const { users = {} } = state.user;
     return {
-        user: state.user,
-        questions: state.questions
+        users: Object.values(users),
+        questionsList: Object.values(questionsList)
     };
 })(LeaderBoard);
